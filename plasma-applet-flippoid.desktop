@@ -1,13 +1,6 @@
 [Desktop Entry]
-Name=flippoid
-Name[x-test]=xxflippoidxx
-Comment=Plasma flippoid
-Comment[km]=ប្លាស្មា flippoid
-Comment[pa]=ਪਲਾਜ਼ਮਾ flippoid
-Comment[sr]=Плазмин flippoid
-Comment[sr@latin]=Plasmin flippoid
-Comment[uk]=Плазма flippoid
-Comment[x-test]=xxPlasma flippoidxx
+Name=Flippoid
+Comment=A Plasmoid that turns upside down (almost) any text you may want to enter!
 Type=Service
 
 X-KDE-ServiceTypes=Plasma/Applet
@@ -16,7 +9,7 @@ X-KDE-PluginInfo-Author=Riccardo Iaconelli
 X-KDE-PluginInfo-Email=riccardo@kde.org
 X-KDE-PluginInfo-Name=flippoid
 X-KDE-PluginInfo-Version=0.1
-X-KDE-PluginInfo-Website=http://plasma.kde.org/
+X-KDE-PluginInfo-Website=http://www.ruphy.org/
 X-KDE-PluginInfo-Category=
 X-KDE-PluginInfo-Depends=
 X-KDE-PluginInfo-License=GPL
