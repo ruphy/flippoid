@@ -55,13 +55,14 @@ QGraphicsWidget *flippoid::graphicsWidget()
         connect(m_lineEdit, SIGNAL(editingFinished()), this, SLOT(flipText()));
         
         m_lineEdit->nativeWidget()->setClickMessage(i18n("Write here the text you want to flip..."));
-        m_flippedText->setText(i18n("Press Enter to see the results."));
+        m_flippedText->setText(i18n("Press enter to see the results"));
         m_flippedText->nativeWidget()->setTextInteractionFlags(Qt::TextSelectableByMouse);
         
         layout->addItem(m_lineEdit);
         layout->addItem(m_flippedText);
         
         m_w->setLayout(layout);
+        m_w->setPreferredSize(260, 200);
     }
     
     return m_w;

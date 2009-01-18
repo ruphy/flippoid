@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=Flippoid
 Comment=A Plasmoid that turns upside down (almost) any text you may want to enter!
+Icon=format-text-direction-rtl
 Type=Service
 
 X-KDE-ServiceTypes=Plasma/Applet
