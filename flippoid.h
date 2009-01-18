@@ -4,13 +4,19 @@
 // We need the Plasma Applet headers
 #include <KIcon>
 
-#include <Plasma/Applet>
+#include <Plasma/PopupApplet>
 #include <Plasma/Svg>
 
+namespace Plasma {
+    class Label;
+    class LineEdit;
+}
+
 class QSizeF;
+class QChar;
 
 // Define our plasma Applet
-class flippoid : public Plasma::Applet
+class flippoid : public Plasma::PopupApplet
 {
     Q_OBJECT
     public:
@@ -19,13 +25,24 @@ class flippoid : public Plasma::Applet
         ~flippoid();
 
         // The paintInterface procedure paints the applet to screen
-        void paintInterface(QPainter *painter,
-                const QStyleOptionGraphicsItem *option,
-                const QRect& contentsRect);
+//         void paintInterface(QPainter *painter,
+//                 const QStyleOptionGraphicsItem *option,
+//                 const QRect& contentsRect);
+
+        QGraphicsWidget *graphicsWidget();
+
         void init();
 
+    public Q_SLOTS:
+        void flipText();
+
     private:
+        QChar inverseChar(const QChar &c);
+
         Plasma::Svg m_svg;
+        QGraphicsWidget *m_w;
+        Plasma::LineEdit *m_lineEdit;
+        Plasma::Label *m_flippedText;
         KIcon m_icon;
 };
  
