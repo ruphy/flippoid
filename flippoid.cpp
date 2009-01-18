@@ -6,6 +6,9 @@
 
 #include <QGraphicsWidget>
 #include <QGraphicsLinearLayout>
+#include <QLabel>
+
+#include <KLineEdit>
 
 #include <Plasma/Label>
 #include <Plasma/LineEdit>
@@ -14,14 +17,12 @@
 
 flippoid::flippoid(QObject *parent, const QVariantList &args)
     : Plasma::PopupApplet(parent, args),
-    m_svg(this),
-    m_w(0),
-    m_icon("document")
+    m_w(0);
 {
     // this will get us the standard applet background, for free!
     setBackgroundHints(DefaultBackground);
-//     m_svg.setImagePath("widgets/background");
-    setPopupIcon(m_icon);
+    
+    setPopupIcon("format-text-direction-rtl"); // TODO: draw an icon
 
     setHasConfigurationInterface(true);  
     resize(200, 200);
@@ -56,14 +57,14 @@ QGraphicsWidget *flippoid::graphicsWidget()
     
         connect(m_lineEdit, SIGNAL(editingFinished()), this, SLOT(flipText()));
         
-        m_lineEdit->setText(i18n("Write the text to flip here..."));
+        m_lineEdit->nativeWidget()->setClickMessage(i18n("Write here the text you want to flip..."));
         m_flippedText->setText(i18n("Press Enter to see the results."));
+        m_flippedText->nativeWidget()->setTextInteractionFlags(Qt::TextSelectableByMouse);
         
         layout->addItem(m_lineEdit);
         layout->addItem(m_flippedText);
         
         m_w->setLayout(layout);
-        resize(m_w->sizeHint());
     }
     
     return m_w;
@@ -73,7 +74,17 @@ QChar flippoid::inverseChar(const QChar &c)
 {
     QMap<QChar, QChar> flipMap;
     
+    // prepend a couple of missing ones...
+    flipMap['u'] = 'n';
     flipMap['p'] = 'd';
+    flipMap['q'] = 'b'; 
+    flipMap['>'] = '<';
+
+    //the two alternatives for l
+//     flipMap['l'] = '|';
+    flipMap[0x006C] = 0x0283;
+    
+    // the rest has been found on several websites, I looked for the unicode code.
     flipMap[0x0021] = 0x00A1;
     flipMap[0x0022] = 0x201E;
     flipMap[0x0026] = 0x214B;
@@ -119,7 +130,6 @@ QChar flippoid::inverseChar(const QChar &c)
     flipMap[0x0069] = 0x0131;
     flipMap[0x006A] = 0x027E;
     flipMap[0x006B] = 0x029E;
-    flipMap[0x006C] = 0x0283;
     flipMap[0x006D] = 0x026F;
     flipMap[0x006E] = 0x0075;
     flipMap[0x0072] = 0x0279;
@@ -146,6 +156,9 @@ QChar flippoid::inverseChar(const QChar &c)
 void flippoid::flipText()
 {
     QString s = m_lineEdit->text();
+    
+    s = s.toLower(); // Uppercase letters seem to have some bugs...
+    
     QString flipped;
     for (int i = 0; i < s.size(); i++) {
         flipped[i] = inverseChar(s.at((s.size()-1)-i));
@@ -153,7 +166,7 @@ void flippoid::flipText()
     
     m_flippedText->setText(flipped);
     
-    kDebug() << flipped;
+//     kDebug() << flipped;
 }
 
 #include "flippoid.moc"

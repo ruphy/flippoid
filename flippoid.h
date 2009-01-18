@@ -39,11 +39,9 @@ class flippoid : public Plasma::PopupApplet
     private:
         QChar inverseChar(const QChar &c);
 
-        Plasma::Svg m_svg;
         QGraphicsWidget *m_w;
         Plasma::LineEdit *m_lineEdit;
         Plasma::Label *m_flippedText;
-        KIcon m_icon;
 };
  
 // This is the command that links your applet to the .desktop file
