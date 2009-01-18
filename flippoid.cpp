@@ -17,7 +17,7 @@
 
 flippoid::flippoid(QObject *parent, const QVariantList &args)
     : Plasma::PopupApplet(parent, args),
-    m_w(0);
+    m_w(0)
 {
     // this will get us the standard applet background, for free!
     setBackgroundHints(DefaultBackground);
@@ -40,10 +40,7 @@ flippoid::~flippoid()
 
 void flippoid::init()
 {
-    // A small demonstration of the setFailedToLaunch function
-    if (m_icon.isNull()) {
-        setFailedToLaunch(true, i18n("No world to say hello"));
-    }
+    
 }
 
 QGraphicsWidget *flippoid::graphicsWidget()
