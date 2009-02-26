@@ -79,8 +79,8 @@ QChar flippoid::inverseChar(const QChar &c)
     flipMap['>'] = '<';
 
     //the two alternatives for l
-//     flipMap['l'] = '|';
-    flipMap[0x006C] = 0x0283;
+    // flipMap[0x006C] = 0x0283;
+    flipMap[0x006C] = 0x05DF;
     
     // the rest has been found on several websites, I looked for the unicode code.
     flipMap[0x0021] = 0x00A1;
